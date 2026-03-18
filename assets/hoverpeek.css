@@ -1,0 +1,71 @@
+.lchp-popup {
+	position: absolute;
+	max-width: 400px;
+	color: #fff;
+	padding: 14px;
+	border-radius: 10px;
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+	z-index: 99999;
+	font-family: system-ui, sans-serif;
+	pointer-events: auto;
+	box-sizing: border-box;
+}
+
+.lchp-content {
+	display: flex;
+	gap: 12px;
+	align-items: stretch;
+	width: 100%;
+}
+
+.lchp-image {
+	width: 100%;
+	max-width: 150px;
+	flex-shrink: 0;
+}
+
+.lchp-image img {
+	width: 100%;
+	height: 100%; /* match content height */
+	object-fit: cover; /* crop properly */
+	border-radius: 8px;
+	display: block;
+}
+
+.lchp-text {
+	flex: 1;
+}
+
+.lchp-popup h4 {
+	margin: 0 0 6px;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.lchp-popup p {
+	font-size: 14px;
+	line-height: 1.5;
+	margin: 0 0 8px;
+	opacity: 0.9;
+}
+
+.lchp-more {
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.lchp-more:hover {
+	text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+	.lchp-content {
+		flex-direction: column;
+	}
+
+	.lchp-image img {
+		width: 100%;
+		height: auto;
+	}
+}

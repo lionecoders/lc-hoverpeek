@@ -1,19 +1,16 @@
-# LC HoverPeek – Instant Link Preview on Hover
-
-**Contributors:** lioncoders
-**Tags:** link preview, hover preview, link tooltip, post preview, content preview
-**Requires at least:** 5.0
-**Tested up to:** 6.9
-**Requires PHP:** 7.2
-**Stable tag:** 1.0.0
-**License:** GPLv2 or later
-**License URI:** https://www.gnu.org/licenses/gpl-2.0.html
+=== LC HoverPeek ===
+Contributors: lionecoders
+Tags: link preview, hover preview, link tooltip, post preview, content preview
+Requires at least: 5.0
+Tested up to: 6.9
+Requires PHP: 7.2
+Stable tag: 1.0.0
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 LC HoverPeek adds a lightweight preview popup when users hover over links. It supports internal WordPress posts and external links.
 
----
-
-## Description
+== Description ==
 
 **LC HoverPeek** enhances user experience by showing a preview popup when visitors hover over links inside your content.
 
@@ -34,7 +31,7 @@ This allows users to quickly preview the destination without leaving the current
 
 The plugin is lightweight, optimized for performance, and designed to work with most WordPress themes.
 
-### Key Features
+= Key Features =
 
 * Hover preview for internal WordPress posts
 * Preview external links automatically
@@ -49,7 +46,7 @@ The plugin is lightweight, optimized for performance, and designed to work with 
 * Works with most themes and page builders
 * No shortcode required
 
-### Use Cases
+= Use Cases =
 
 * Blog posts referencing other articles
 * Documentation websites
@@ -58,9 +55,7 @@ The plugin is lightweight, optimized for performance, and designed to work with 
 * News websites
 * Internal linking strategies
 
----
-
-## Customization Options
+== Customization Options ==
 
 You can customize popup appearance and behavior from **Settings → Hover Preview**.
 
@@ -75,9 +70,7 @@ You can customize popup appearance and behavior from **Settings → Hover Previe
 * Excerpt Color
 * Link Color
 
----
-
-## Installation
+== Installation ==
 
 1. Upload the plugin folder to `/wp-content/plugins/`
 2. Activate the plugin through the **Plugins** menu in WordPress
@@ -85,38 +78,37 @@ You can customize popup appearance and behavior from **Settings → Hover Previe
 
 No additional configuration is required.
 
----
+== Frequently Asked Questions ==
 
-## Frequently Asked Questions
+= Does the plugin work with external links? =
 
-**Does the plugin work with external links?**
 Yes. LC HoverPeek automatically detects external URLs and fetches preview metadata such as title, description, and image.
 
-**Does it slow down my website?**
+= Does it slow down my website? =
+
 No. The plugin uses AJAX and transient caching to ensure minimal performance impact.
 
-**Does it work with page builders?**
+= Does it work with page builders? =
+
 Yes. The plugin works with most page builders as long as links are rendered as standard `<a>` tags.
 
-**Can I disable previews for certain links?**
+= Can I disable previews for certain links? =
+
 Currently the plugin automatically processes links in the content. Future versions may include granular controls.
 
-**Does it require JavaScript?**
+= Does it require JavaScript? =
+
 Yes. The hover preview functionality uses JavaScript and AJAX.
 
----
-
-## Screenshots
+== Screenshots ==
 
 1. Link preview popup on hover
 2. Internal post preview
 3. External link preview
 
----
+== Changelog ==
 
-## Changelog
-
-### 1.0.0
+= 1.0.0 =
 
 * Initial release
 * Hover preview for internal posts
@@ -125,9 +117,7 @@ Yes. The hover preview functionality uses JavaScript and AJAX.
 * Metadata scraping for external URLs
 * Transient caching for performance
 
----
+== Upgrade Notice ==
 
-## Upgrade Notice
-
-**1.0.0**
+= 1.0.0 =
 Initial plugin release.

@@ -1,0 +1,75 @@
+<?php
+/**
+ * Plugin Name: LC HoverPeek
+ * Description: Show instant link previews in a popup when hovering over links.
+ * Version: 1.0.0
+ * Author:  LionCoders
+ * Text Domain: lc-hoverpeek
+ * License:     GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Tested up to: 6.9
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+// Define plugin constants.
+define( 'LCHP_VERSION', '1.0.0' );
+define( 'LCHP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'LCHP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
+// Load Composer autoloader
+if ( file_exists( LCHP_PLUGIN_DIR . 'vendor/autoload.php' ) ) {
+	require_once LCHP_PLUGIN_DIR . 'vendor/autoload.php';
+}
+
+class LC_HoverPeek {
+
+	private static $instance = null;
+
+	public static function get_instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
+	}
+
+	private function __construct() {
+		register_activation_hook( __FILE__, [ $this, 'lchp_activate_plugin' ] );
+		add_action( 'admin_init', [ $this, 'lchp_activation_redirect' ] );
+
+		if ( class_exists( '\LCHoverPeek\LC_HoverPeek_Core' ) ) {
+			\LCHoverPeek\LC_HoverPeek_Core::get_instance();
+		}
+
+		if ( is_admin() && class_exists( '\LCHoverPeek\Admin\LC_HoverPeek_Admin' ) ) {
+			\LCHoverPeek\Admin\LC_HoverPeek_Admin::get_instance();
+		}
+	}
+
+	public function lchp_activate_plugin() {
+		if ( ! get_option( 'lchp_dashboard_redirection' ) ) {
+			add_option( 'lchp_do_activation_redirect', true );
+			update_option( 'lchp_dashboard_redirection', true );
+		}
+	}
+
+	public function lchp_activation_redirect() {
+		if ( ! get_option( 'lchp_do_activation_redirect', false ) ) {
+			return;
+		}
+
+		delete_option( 'lchp_do_activation_redirect' );
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['activate-multi'] ) ) {
+			return;
+		}
+
+		wp_safe_redirect( admin_url( 'admin.php?page=lc-hoverpeek-settings' ) );
+		exit;
+	}
+}
+
+LC_HoverPeek::get_instance();

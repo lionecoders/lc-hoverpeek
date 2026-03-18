@@ -1,0 +1,10 @@
+{
+    "name": "lionecoders/lc-hoverpeek",
+    "description": "LC HoverPeek AutoLoader",
+    "autoload": {
+        "psr-4": {
+            "LCHoverPeek\\": "includes/",
+            "LCHoverPeek\\Admin\\": "admin/"
+        }
+    }
+}
