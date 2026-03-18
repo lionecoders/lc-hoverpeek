@@ -1,14 +1,5 @@
 # LC HoverPeek – Instant Link Preview on Hover
 
-**Contributors:** lioncoders
-**Tags:** link preview, hover preview, link tooltip, post preview, content preview
-**Requires at least:** 5.0
-**Tested up to:** 6.9
-**Requires PHP:** 7.2
-**Stable tag:** 1.0.0
-**License:** GPLv2 or later
-**License URI:** https://www.gnu.org/licenses/gpl-2.0.html
-
 LC HoverPeek adds a lightweight preview popup when users hover over links. It supports internal WordPress posts and external links.
 
 ---
