@@ -23,21 +23,21 @@ class LC_HoverPeek_Core {
 	}
 
 	private function __construct() {
-		add_action( 'wp_enqueue_scripts', [ $this, 'lchp_enqueue_assets' ] );
-		add_filter( 'the_content', [ $this, 'lchp_inject_post_id' ] );
-		add_action( 'wp_ajax_lc_hoverpeek_preview', [ $this, 'lchp_preview' ] );
-		add_action( 'wp_ajax_nopriv_lc_hoverpeek_preview', [ $this, 'lchp_preview' ] );
-		add_action( 'wp_ajax_lc_hoverpeek_batch', [ $this, 'lchp_batch' ] );
-		add_action( 'wp_ajax_nopriv_lc_hoverpeek_batch', [ $this, 'lchp_batch' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'lcho_enqueue_assets' ] );
+		add_filter( 'the_content', [ $this, 'lcho_inject_post_id' ] );
+		add_action( 'wp_ajax_lcho_preview', [ $this, 'lcho_preview' ] );
+		add_action( 'wp_ajax_nopriv_lcho_preview', [ $this, 'lcho_preview' ] );
+		add_action( 'wp_ajax_lcho_batch', [ $this, 'lcho_batch' ] );
+		add_action( 'wp_ajax_nopriv_lcho_batch', [ $this, 'lcho_batch' ] );
 	}
 
-	public function lchp_enqueue_assets() {
+	public function lcho_enqueue_assets() {
 		// Performance optimization: only load on singular pages and if the filter is active.
-		if ( ! is_singular() || ! has_filter( 'the_content', [ $this, 'lchp_inject_post_id' ] ) ) {
+		if ( ! is_singular() || ! has_filter( 'the_content', [ $this, 'lcho_inject_post_id' ] ) ) {
 			return;
 		}
 
-		$supported_types = get_option( 'lchp_types', [ 'post' ] );
+		$supported_types = get_option( 'lcho_types', [ 'post' ] );
 		if ( ! is_array( $supported_types ) ) {
 			$supported_types = [];
 		}
@@ -47,51 +47,51 @@ class LC_HoverPeek_Core {
 		}
 
 		wp_enqueue_style(
-			'lchp-style',
-			LCHP_PLUGIN_URL . 'assets/hoverpeek.css',
+			'lcho-style',
+			LCHO_PLUGIN_URL . 'assets/hoverpeek.css',
 			[],
-			LCHP_VERSION
+			LCHO_VERSION
 		);
 
 		wp_enqueue_script(
-			'lchp-script',
-			LCHP_PLUGIN_URL . 'assets/hoverpeek.js',
+			'lcho-script',
+			LCHO_PLUGIN_URL . 'assets/hoverpeek.js',
 			[ 'jquery' ],
-			LCHP_VERSION,
+			LCHO_VERSION,
 			true
 		);
 
 		wp_localize_script(
-			'lchp-script',
-			'LC_HOVERPEEK',
+			'lcho-script',
+			'lcho',
 			[
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'nonce'    => wp_create_nonce( 'lc_hoverpeek_nonce' ),
+				'nonce'    => wp_create_nonce( 'lcho_nonce' ),
 			]
 		);
 
 		/* Dynamic color settings */
-		$bg_color      = get_option( 'lchp_bg_color', '#111111' );
-		$title_color   = get_option( 'lchp_title_color', '#ffffff' );
-		$excerpt_color = get_option( 'lchp_excerpt_color', '#ffffff' );
-		$link_color    = get_option( 'lchp_link_color', '#4da3ff' );
+		$bg_color      = get_option( 'lcho_bg_color', '#111111' );
+		$title_color   = get_option( 'lcho_title_color', '#ffffff' );
+		$excerpt_color = get_option( 'lcho_excerpt_color', '#ffffff' );
+		$link_color    = get_option( 'lcho_link_color', '#4da3ff' );
 
 		$custom_css = "
-			.lchp-popup { background: " . esc_html( $bg_color ) . "; }
-			.lchp-popup h4 { color: " . esc_html( $title_color ) . "; }
-			.lchp-popup p { color: " . esc_html( $excerpt_color ) . "; }
-			.lchp-more { color: " . esc_html( $link_color ) . "; }
+			.lcho-popup { background: " . esc_html( $bg_color ) . "; }
+			.lcho-popup h4 { color: " . esc_html( $title_color ) . "; }
+			.lcho-popup p { color: " . esc_html( $excerpt_color ) . "; }
+			.lcho-more { color: " . esc_html( $link_color ) . "; }
 		";
 
-		wp_add_inline_style( 'lchp-style', $custom_css );
+		wp_add_inline_style( 'lcho-style', $custom_css );
 	}
 
-	public function lchp_inject_post_id( $content ) {
+	public function lcho_inject_post_id( $content ) {
 		if ( is_admin() || ! is_main_query() ) {
 			return $content;
 		}
 
-		$supported_types = get_option( 'lchp_types', [ 'post' ] );
+		$supported_types = get_option( 'lcho_types', [ 'post' ] );
 		if ( ! is_array( $supported_types ) ) {
 			$supported_types = [];
 		}
@@ -105,8 +105,8 @@ class LC_HoverPeek_Core {
 		}
 
 		$site_url = get_site_url();
-		$enable_internal = get_option( 'lchp_enable_internal', 1 );
-		$enable_external = get_option( 'lchp_enable_external', 0 );
+		$enable_internal = get_option( 'lcho_enable_internal', 1 );
+		$enable_external = get_option( 'lcho_enable_external', 0 );
 
 		return preg_replace_callback(
 			'/<a\s+([^>]*?)href=["\']([^"\']+)["\']([^>]*)>/i',
@@ -121,7 +121,7 @@ class LC_HoverPeek_Core {
 					}
 
 					return sprintf(
-						'<a data-lchp-post="%1$d"%2$shref="%3$s"%4$s>',
+						'<a data-lcho-post="%1$d"%2$shref="%3$s"%4$s>',
 						absint( $post_id ),
 						$matches[1],
 						esc_url( $url ),
@@ -135,7 +135,7 @@ class LC_HoverPeek_Core {
 					}
 
 					return sprintf(
-						'<a data-lchp-url="%1$s"%2$shref="%3$s"%4$s>',
+						'<a data-lcho-url="%1$s"%2$shref="%3$s"%4$s>',
 						esc_url( $url ),
 						$matches[1],
 						esc_url( $url ),
@@ -149,14 +149,14 @@ class LC_HoverPeek_Core {
 		);
 	}
 
-	public function lchp_preview() {
-		check_ajax_referer( 'lc_hoverpeek_nonce', 'nonce' );
+	public function lcho_preview() {
+		check_ajax_referer( 'lcho_nonce', 'nonce' );
 
 		$post_id = isset( $_POST['post_id'] ) ? absint( wp_unslash( $_POST['post_id'] ) ) : 0;
 		$url     = isset( $_POST['url'] ) ? esc_url_raw( wp_unslash( $_POST['url'] ) ) : '';
 
 		if ( $post_id ) {
-			$cache_key = 'lchp_int_' . $post_id;
+			$cache_key = 'lcho_int_' . $post_id;
 			$cached    = get_transient( $cache_key );
 
 			if ( $cached ) {
@@ -182,7 +182,7 @@ class LC_HoverPeek_Core {
 		}
 
 		if ( $url ) {
-			$cache_key = 'lchp_ext_' . md5( $url );
+			$cache_key = 'lcho_ext_' . md5( $url );
 			$cached    = get_transient( $cache_key );
 
 			if ( $cached ) {
@@ -226,8 +226,8 @@ class LC_HoverPeek_Core {
 		wp_send_json_error();
 	}
 
-	public function lchp_batch() {
-		check_ajax_referer( 'lc_hoverpeek_nonce', 'nonce' );
+	public function lcho_batch() {
+		check_ajax_referer( 'lcho_nonce', 'nonce' );
 
 		$result = [];
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
@@ -238,7 +238,7 @@ class LC_HoverPeek_Core {
 			$url     = esc_url_raw( $item['url'] );
 
 			if ( $post_id ) {
-				$cache_key = 'lchp_int_' . $post_id;
+				$cache_key = 'lcho_int_' . $post_id;
 				$cached    = get_transient( $cache_key );
 
 				if ( $cached ) {
@@ -262,7 +262,7 @@ class LC_HoverPeek_Core {
 			}
 
 			if ( $url ) {
-				$cache_key = 'lchp_ext_' . md5( $url );
+				$cache_key = 'lcho_ext_' . md5( $url );
 				$cached    = get_transient( $cache_key );
 
 				if ( $cached ) {

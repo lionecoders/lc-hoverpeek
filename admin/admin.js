@@ -1,8 +1,8 @@
 jQuery(document).ready(function($) {
 	// --- State Tracking ---
 	const initialValues = {};
-	const $form = $( '.lchp-settings-wrap form' );
-	const $btnUndo = $( '.lchp-btn-undo' );
+	const $form = $( '.lcho-settings-wrap form' );
+	const $btnUndo = $( '.lcho-btn-undo' );
 
 	function captureState() {
 		$form.find( 'input[name]' ).each( function() {
@@ -47,14 +47,14 @@ jQuery(document).ready(function($) {
 		if ( $el.is( '[type="color"]' ) ) {
 			const val = $el.val();
 			$el.parent().css( 'background-color', val );
-			$el.closest( '.lchp-color-input-wrap' ).find( 'input[type="text"]' ).val( val.toUpperCase() );
+			$el.closest( '.lcho-color-input-wrap' ).find( 'input[type="text"]' ).val( val.toUpperCase() );
 		}
 
-		if ( $el.is( '[type="text"]' ) && $el.closest( '.lchp-color-input-wrap' ).length ) {
+		if ( $el.is( '[type="text"]' ) && $el.closest( '.lcho-color-input-wrap' ).length ) {
 			const val = $el.val();
 			if ( /^#[0-9A-F]{6}$/i.test( val ) ) {
-				$el.closest( '.lchp-color-input-wrap' ).find( '.lchp-color-preview' ).css( 'background-color', val );
-				$el.closest( '.lchp-color-input-wrap' ).find( 'input[type="color"]' ).val( val );
+				$el.closest( '.lcho-color-input-wrap' ).find( '.lcho-color-preview' ).css( 'background-color', val );
+				$el.closest( '.lcho-color-input-wrap' ).find( 'input[type="color"]' ).val( val );
 			}
 		}
 
@@ -72,9 +72,9 @@ jQuery(document).ready(function($) {
 			}
 
 			// Force color swatch update
-			if ( $el.closest( '.lchp-color-input-wrap' ).length ) {
-				const colorWrap = $el.closest( '.lchp-color-input-wrap' );
-				colorWrap.find( '.lchp-color-preview' ).css( 'background-color', val );
+			if ( $el.closest( '.lcho-color-input-wrap' ).length ) {
+				const colorWrap = $el.closest( '.lcho-color-input-wrap' );
+				colorWrap.find( '.lcho-color-preview' ).css( 'background-color', val );
 				colorWrap.find( 'input[type="color"]' ).val( val );
 			}
 		});
@@ -82,14 +82,14 @@ jQuery(document).ready(function($) {
 	});
 
 	// --- Reset to Defaults Action ---
-	const $modal = $( '#lchp-reset-modal' );
+	const $modal = $( '#lcho-reset-modal' );
 
-	$( '.lchp-btn-reset' ).on( 'click', function( e ) {
+	$( '.lcho-btn-reset' ).on( 'click', function( e ) {
 		e.preventDefault();
 		$modal.addClass( 'is-active' );
 	});
 
-	$( '.lchp-modal-close, .lchp-btn-cancel' ).on( 'click', function() {
+	$( '.lcho-modal-close, .lcho-btn-cancel' ).on( 'click', function() {
 		$modal.removeClass( 'is-active' );
 	});
 
@@ -99,13 +99,13 @@ jQuery(document).ready(function($) {
 		}
 	});
 
-	$( '.lchp-btn-confirm-reset' ).on( 'click', function() {
+	$( '.lcho-btn-confirm-reset' ).on( 'click', function() {
 		const $btn = $( this );
 		$btn.prop( 'disabled', true ).text( 'Resetting...' );
 
-		$.post( LCHP_ADMIN.ajax_url, {
-			action: 'lchp_reset_settings',
-			nonce: LCHP_ADMIN.nonce,
+		$.post( lcho_admin.ajax_url, {
+			action: 'lcho_reset_settings',
+			nonce: lcho_admin.nonce,
 		}, function( res ) {
 			if ( res.success ) {
 				window.location.reload();
@@ -117,7 +117,7 @@ jQuery(document).ready(function($) {
 	});
 
 	// --- Info Box Toggle ---
-	$( '#lchp-info-toggle' ).on( 'click', function() {
-		$( this ).closest( '.lchp-info' ).toggleClass( 'is-expanded' );
+	$( '#lcho-info-toggle' ).on( 'click', function() {
+		$( this ).closest( '.lcho-info' ).toggleClass( 'is-expanded' );
 	});
 });

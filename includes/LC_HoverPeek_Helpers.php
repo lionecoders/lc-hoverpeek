@@ -24,7 +24,7 @@ class LC_HoverPeek_Helpers {
 
 	private function __construct() {}
 
-	public static function lchp_limit_words( $text, $limit = 7 ) {
+	public static function lcho_limit_words( $text, $limit = 7 ) {
 		$words = explode( ' ', wp_strip_all_tags( $text ) );
 		if ( count( $words ) > $limit ) {
 			return implode( ' ', array_slice( $words, 0, $limit ) ) . '...';
@@ -32,7 +32,7 @@ class LC_HoverPeek_Helpers {
 		return implode( ' ', $words );
 	}
 
-	public static function lchp_limit_chars( $text, $limit = 90 ) {
+	public static function lcho_limit_chars( $text, $limit = 90 ) {
 		$text = wp_strip_all_tags( $text );
 		if ( mb_strlen( $text ) > $limit ) {
 			return mb_substr( $text, 0, $limit ) . '...';

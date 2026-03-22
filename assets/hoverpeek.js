@@ -1,41 +1,41 @@
 jQuery(function ($) {
 
-	let lchpPopup = null;
-	let lchpHideTimer = null;
-	let lchpHoverTimer = null;
-	let lchpActiveXHR = null;
+	let lchoPopup = null;
+	let lchoHideTimer = null;
+	let lchoHoverTimer = null;
+	let lchoActiveXHR = null;
 
-	window.lchpCache = window.lchpCache || {};
+	window.lchoCache = window.lchoCache || {};
 
-	const lchpSelector = 'a[data-lchp-post], a[data-lchp-url]';
+	const lchoSelector = 'a[data-lcho-post], a[data-lcho-url]';
 
 
-	function lchpRemovePopup() {
+	function lchoRemovePopup() {
 
-		if (lchpPopup) {
-			lchpPopup.remove();
-			lchpPopup = null;
+		if (lchoPopup) {
+			lchoPopup.remove();
+			lchoPopup = null;
 		}
 
-		if (lchpActiveXHR) {
-			lchpActiveXHR.abort();
-			lchpActiveXHR = null;
+		if (lchoActiveXHR) {
+			lchoActiveXHR.abort();
+			lchoActiveXHR = null;
 		}
 	}
 
 
-	function lchpScheduleHide() {
+	function lchoScheduleHide() {
 
-		if (lchpActiveXHR) {
-			lchpActiveXHR.abort();
-			lchpActiveXHR = null;
+		if (lchoActiveXHR) {
+			lchoActiveXHR.abort();
+			lchoActiveXHR = null;
 		}
 
-		lchpHideTimer = setTimeout(lchpRemovePopup, 250);
+		lchoHideTimer = setTimeout(lchoRemovePopup, 250);
 	}
 
 
-	function lchpSmartPosition(popup, x, y) {
+	function lchoSmartPosition(popup, x, y) {
 
 		const padding = 12;
 
@@ -68,23 +68,23 @@ jQuery(function ($) {
 	}
 
 
-	function lchpShowPopup(data, x, y) {
+	function lchoShowPopup(data, x, y) {
 
-		lchpRemovePopup();
+		lchoRemovePopup();
 
-		lchpPopup = $(`
-			<div class="lchp-popup">
-				<div class="lchp-content">
+		lchoPopup = $(`
+			<div class="lcho-popup">
+				<div class="lcho-content">
 
 					${data.image ? `
-					<div class="lchp-image">
+					<div class="lcho-image">
 						<img src="${data.image}" alt="">
 					</div>` : ''}
 
-					<div class="lchp-text">
+					<div class="lcho-text">
 						<h4>${data.title}</h4>
 						<p>${data.excerpt}</p>
-						<a href="${data.link}" class="lchp-more">
+						<a href="${data.link}" class="lcho-more">
 							Learn more →
 						</a>
 					</div>
@@ -93,23 +93,23 @@ jQuery(function ($) {
 			</div>
 		`).appendTo('body');
 
-		lchpSmartPosition(lchpPopup, x, y);
+		lchoSmartPosition(lchoPopup, x, y);
 
-		lchpPopup.on('mouseenter', () => clearTimeout(lchpHideTimer));
-		lchpPopup.on('mouseleave', lchpScheduleHide);
+		lchoPopup.on('mouseenter', () => clearTimeout(lchoHideTimer));
+		lchoPopup.on('mouseleave', lchoScheduleHide);
 	}
 
 
 	/* Hover preview */
 
-	$(document).on('mouseenter', lchpSelector, function (e) {
+	$(document).on('mouseenter', lchoSelector, function (e) {
 
-		clearTimeout(lchpHideTimer);
+		clearTimeout(lchoHideTimer);
 
 		const $link = $(this);
 
-		const postID = $link.data('lchp-post');
-		const url = $link.data('lchp-url');
+		const postID = $link.data('lcho-post');
+		const url = $link.data('lcho-url');
 
 		if (!postID && !url) return;
 
@@ -120,36 +120,36 @@ jQuery(function ($) {
 
 		/* Show instantly if cached */
 
-		if (lchpCache[key]) {
-			lchpShowPopup(lchpCache[key], x, y);
+		if (lchoCache[key]) {
+			lchoShowPopup(lchoCache[key], x, y);
 			return;
 		}
 
 		/* Fallback AJAX */
 
-		lchpHoverTimer = setTimeout(function () {
+		lchoHoverTimer = setTimeout(function () {
 
-			if (lchpActiveXHR) {
-				lchpActiveXHR.abort();
+			if (lchoActiveXHR) {
+				lchoActiveXHR.abort();
 			}
 
-			lchpActiveXHR = $.post(
-				LC_HOVERPEEK.ajax_url,
+			lchoActiveXHR = $.post(
+				lcho.ajax_url,
 				{
-					action: 'lc_hoverpeek_preview',
+					action: 'lcho_preview',
 					post_id: postID || 0,
 					url: url || '',
-					nonce: LC_HOVERPEEK.nonce
+					nonce: lcho.nonce
 				},
 				function (res) {
 
-					lchpActiveXHR = null;
+					lchoActiveXHR = null;
 
 					if (!res.success) return;
 
-					lchpCache[key] = res.data;
+					lchoCache[key] = res.data;
 
-					lchpShowPopup(res.data, x, y);
+					lchoShowPopup(res.data, x, y);
 
 				}
 			);
@@ -159,27 +159,27 @@ jQuery(function ($) {
 	});
 
 
-	$(document).on('mouseleave', lchpSelector, function () {
+	$(document).on('mouseleave', lchoSelector, function () {
 
-		clearTimeout(lchpHoverTimer);
-		lchpScheduleHide();
+		clearTimeout(lchoHoverTimer);
+		lchoScheduleHide();
 
 	});
 
 
-	$(document).on('scroll resize', lchpRemovePopup);
+	$(document).on('scroll resize', lchoRemovePopup);
 
 
 	/* Batch prefetch */
 
-	function lchpBatchPrefetch() {
+	function lchoBatchPrefetch() {
 
 		const links = [];
 
-		$('a[data-lchp-post], a[data-lchp-url]').each(function () {
+		$('a[data-lcho-post], a[data-lcho-url]').each(function () {
 
-			const postID = $(this).data('lchp-post');
-			const url = $(this).data('lchp-url');
+			const postID = $(this).data('lcho-post');
+			const url = $(this).data('lcho-url');
 
 			if (postID) {
 				links.push({ post_id: postID, url: '' });
@@ -198,11 +198,11 @@ jQuery(function ($) {
 		if (!links.length) return;
 
 		$.post(
-			LC_HOVERPEEK.ajax_url,
+			lcho.ajax_url,
 			{
-				action: 'lc_hoverpeek_batch',
+				action: 'lcho_batch',
 				links: links,
-				nonce: LC_HOVERPEEK.nonce
+				nonce: lcho.nonce
 			},
 			function (res) {
 
@@ -214,7 +214,7 @@ jQuery(function ($) {
 						? 'post-' + item.post_id
 						: 'url-' + item.link;
 
-					lchpCache[key] = item;
+					lchoCache[key] = item;
 
 				});
 
@@ -226,7 +226,7 @@ jQuery(function ($) {
 
 	$(window).on('load', function () {
 
-		setTimeout(lchpBatchPrefetch, 800);
+		setTimeout(lchoBatchPrefetch, 800);
 
 	});
 

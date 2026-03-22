@@ -15,13 +15,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants.
-define( 'LCHP_VERSION', '1.0.0' );
-define( 'LCHP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'LCHP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'LCHO_VERSION', '1.0.0' );
+define( 'LCHO_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'LCHO_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 // Load Composer autoloader
-if ( file_exists( LCHP_PLUGIN_DIR . 'vendor/autoload.php' ) ) {
-	require_once LCHP_PLUGIN_DIR . 'vendor/autoload.php';
+if ( file_exists( LCHO_PLUGIN_DIR . 'vendor/autoload.php' ) ) {
+	require_once LCHO_PLUGIN_DIR . 'vendor/autoload.php';
 }
 
 class LC_HoverPeek {
@@ -36,8 +36,8 @@ class LC_HoverPeek {
 	}
 
 	private function __construct() {
-		register_activation_hook( __FILE__, [ $this, 'lchp_activate_plugin' ] );
-		add_action( 'admin_init', [ $this, 'lchp_activation_redirect' ] );
+		register_activation_hook( __FILE__, [ $this, 'lcho_activate_plugin' ] );
+		add_action( 'admin_init', [ $this, 'lcho_activation_redirect' ] );
 
 		if ( class_exists( '\LCHoverPeek\LC_HoverPeek_Core' ) ) {
 			\LCHoverPeek\LC_HoverPeek_Core::get_instance();
@@ -48,19 +48,19 @@ class LC_HoverPeek {
 		}
 	}
 
-	public function lchp_activate_plugin() {
-		if ( ! get_option( 'lchp_dashboard_redirection' ) ) {
-			add_option( 'lchp_do_activation_redirect', true );
-			update_option( 'lchp_dashboard_redirection', true );
+	public function lcho_activate_plugin() {
+		if ( ! get_option( 'lcho_dashboard_redirection' ) ) {
+			add_option( 'lcho_do_activation_redirect', true );
+			update_option( 'lcho_dashboard_redirection', true );
 		}
 	}
 
-	public function lchp_activation_redirect() {
-		if ( ! get_option( 'lchp_do_activation_redirect', false ) ) {
+	public function lcho_activation_redirect() {
+		if ( ! get_option( 'lcho_do_activation_redirect', false ) ) {
 			return;
 		}
 
-		delete_option( 'lchp_do_activation_redirect' );
+		delete_option( 'lcho_do_activation_redirect' );
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_GET['activate-multi'] ) ) {
