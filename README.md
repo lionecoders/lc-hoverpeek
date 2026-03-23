@@ -107,6 +107,10 @@ Yes. The hover preview functionality uses JavaScript and AJAX.
 
 ## Changelog
 
+### 1.0.1
+
+* Update Prefix
+
 ### 1.0.0
 
 * Initial release
