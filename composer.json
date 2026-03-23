@@ -3,8 +3,13 @@
     "description": "LC HoverPeek AutoLoader",
     "autoload": {
         "psr-4": {
-            "LCHoverPeek\\": "includes/",
-            "LCHoverPeek\\Admin\\": "admin/"
-        }
+            "lchoverpeek\\": "includes/",
+            "lchoverpeek\\admin\\": "admin/"
+        },
+        "classmap": [
+            "includes/lcho_core.php",
+            "includes/lcho_helpers.php",
+            "admin/lcho_admin.php"
+        ]
     }
 }

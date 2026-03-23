@@ -6,6 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'LCHoverPeek\\Admin\\' => array($baseDir . '/admin'),
-    'LCHoverPeek\\' => array($baseDir . '/includes'),
+    'lchoverpeek\\admin\\' => array($baseDir . '/admin'),
+    'lchoverpeek\\' => array($baseDir . '/includes'),
 );

@@ -24,7 +24,7 @@ if ( file_exists( LCHO_PLUGIN_DIR . 'vendor/autoload.php' ) ) {
 	require_once LCHO_PLUGIN_DIR . 'vendor/autoload.php';
 }
 
-class LC_HoverPeek {
+class LCHO_HoverPeek {
 
 	private static $instance = null;
 
@@ -39,12 +39,12 @@ class LC_HoverPeek {
 		register_activation_hook( __FILE__, [ $this, 'lcho_activate_plugin' ] );
 		add_action( 'admin_init', [ $this, 'lcho_activation_redirect' ] );
 
-		if ( class_exists( '\LCHoverPeek\LC_HoverPeek_Core' ) ) {
-			\LCHoverPeek\LC_HoverPeek_Core::get_instance();
+		if ( class_exists( '\lchoverpeek\LCHO_Core' ) ) {
+			\lchoverpeek\LCHO_Core::get_instance();
 		}
 
-		if ( is_admin() && class_exists( '\LCHoverPeek\Admin\LC_HoverPeek_Admin' ) ) {
-			\LCHoverPeek\Admin\LC_HoverPeek_Admin::get_instance();
+		if ( is_admin() && class_exists( '\lchoverpeek\admin\LCHO_Admin' ) ) {
+			\lchoverpeek\admin\LCHO_Admin::get_instance();
 		}
 	}
 
@@ -72,4 +72,4 @@ class LC_HoverPeek {
 	}
 }
 
-LC_HoverPeek::get_instance();
+LCHO_HoverPeek::get_instance();

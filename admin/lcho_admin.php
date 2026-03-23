@@ -2,16 +2,16 @@
 /**
  * Admin settings for LC HoverPeek.
  *
- * @package LC_HoverPeek
+ * @package lchoverpeek
  */
 
-namespace LCHoverPeek\Admin;
+namespace lchoverpeek\admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class LC_HoverPeek_Admin {
+class LCHO_Admin {
 
 	private static $instance = null;
 

@@ -2,16 +2,16 @@
 /**
  * Core functionality for LC HoverPeek.
  *
- * @package LC_HoverPeek
+ * @package lchoverpeek
  */
 
-namespace LCHoverPeek;
+namespace lchoverpeek;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class LC_HoverPeek_Core {
+class LCHO_Core {
 
 	private static $instance = null;
 

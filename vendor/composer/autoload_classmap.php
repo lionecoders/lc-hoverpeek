@@ -7,4 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'lchoverpeek\\LCHO_Core' => $baseDir . '/includes/lcho_core.php',
+    'lchoverpeek\\LCHO_Helpers' => $baseDir . '/includes/lcho_helpers.php',
+    'lchoverpeek\\admin\\LCHO_Admin' => $baseDir . '/admin/lcho_admin.php',
 );

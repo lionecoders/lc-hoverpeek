@@ -7,19 +7,19 @@ namespace Composer\Autoload;
 class ComposerStaticInitc28fb1874543f556d341b4c51bd375ac
 {
     public static $prefixLengthsPsr4 = array (
-        'L' => 
+        'l' => 
         array (
-            'LCHoverPeek\\Admin\\' => 18,
-            'LCHoverPeek\\' => 12,
+            'lchoverpeek\\admin\\' => 18,
+            'lchoverpeek\\' => 12,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'LCHoverPeek\\Admin\\' => 
+        'lchoverpeek\\admin\\' => 
         array (
             0 => __DIR__ . '/../..' . '/admin',
         ),
-        'LCHoverPeek\\' => 
+        'lchoverpeek\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes',
         ),
@@ -27,6 +27,9 @@ class ComposerStaticInitc28fb1874543f556d341b4c51bd375ac
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'lchoverpeek\\LCHO_Core' => __DIR__ . '/../..' . '/includes/lcho_core.php',
+        'lchoverpeek\\LCHO_Helpers' => __DIR__ . '/../..' . '/includes/lcho_helpers.php',
+        'lchoverpeek\\admin\\LCHO_Admin' => __DIR__ . '/../..' . '/admin/lcho_admin.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
