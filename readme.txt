@@ -4,7 +4,7 @@ Tags: link preview, hover preview, link tooltip, post preview, content preview
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.2
-Stable tag: 1.0.1
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,10 @@ You can customize popup appearance and behavior from **Settings → Hover Previe
 * Excerpt Color
 * Link Color
 
+==Screenshots==
+1. Hover Preview Settings
+2. Frontend view
+
 == Installation ==
 
 1. Upload the plugin folder to `/wp-content/plugins/`
@@ -108,18 +112,9 @@ Yes. The hover preview functionality uses JavaScript and AJAX.
 
 == Changelog ==
 
-= 1.0.1 =
-
-* Update Prefix
-
 = 1.0.0 =
 
-* Initial release
-* Hover preview for internal posts
-* External link preview support
-* AJAX preview loading
-* Metadata scraping for external URLs
-* Transient caching for performance
+* Initial plugin release.
 
 == Upgrade Notice ==
 
