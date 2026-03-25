@@ -72,7 +72,6 @@ You can customize popup appearance and behavior from **Settings → Hover Previe
 
 ==Screenshots==
 1. Hover Preview Settings
-2. Frontend view
 
 == Installation ==
 
