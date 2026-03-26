@@ -57,7 +57,7 @@ The plugin is lightweight, optimized for performance, and designed to work with 
 
 == Customization Options ==
 
-You can customize popup appearance and behavior from **Settings → Hover Preview**.
+You can customize popup appearance and behavior from **Hover Preview** Menu.
 
 **Display Settings:**
 * Enable/Disable Internal Links
