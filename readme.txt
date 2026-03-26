@@ -1,5 +1,5 @@
 === LC HoverPeek ===
-Contributors: lionecoders
+Contributors: lionecoders, deep7197
 Tags: link preview, hover preview, link tooltip, post preview, content preview
 Requires at least: 5.0
 Tested up to: 6.9
@@ -71,7 +71,8 @@ You can customize popup appearance and behavior from **Hover Preview** Menu.
 * Link Color
 
 ==Screenshots==
-1. Hover Preview Settings
+1. Frontend Preview
+2. Hover Preview Settings
 
 == Installation ==
 
