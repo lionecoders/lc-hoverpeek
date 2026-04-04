@@ -4,7 +4,7 @@ Tags: link preview, hover preview, link tooltip, post preview, content preview
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,18 +33,18 @@ The plugin is lightweight, optimized for performance, and designed to work with 
 
 = Key Features =
 
-* Hover preview for internal WordPress posts
-* Preview external links automatically
+* Hover preview for internal WordPress posts.
+* Preview external links automatically.
 * Change appearance colors (Background, Title, Excerpt, Link)
-* Choose which specific Post Types (Posts, Pages, etc.) trigger a preview
-* Featured image support
-* Automatic excerpt generation
-* AJAX-powered loading
-* External link metadata scraping
-* Transient caching for better performance
-* Lightweight JavaScript and CSS
-* Works with most themes and page builders
-* No shortcode required
+* Choose which specific Post Types (Posts, Pages, etc.) trigger a preview.
+* Featured image support.
+* Automatic excerpt generation.
+* AJAX-powered loading.
+* External link metadata scraping.
+* Transient caching for better performance.
+* Lightweight JavaScript and CSS.
+* Works with most themes and page builders.
+* No shortcode required.
 
 = Use Cases =
 
@@ -111,6 +111,9 @@ Yes. The hover preview functionality uses JavaScript and AJAX.
 3. External link preview
 
 == Changelog ==
+
+== 1.0.1 =
+* Texual changes
 
 = 1.0.0 =
 
