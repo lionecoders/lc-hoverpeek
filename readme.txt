@@ -113,7 +113,7 @@ Yes. The hover preview functionality uses JavaScript and AJAX.
 == Changelog ==
 
 = 1.0.1 =
-* Textual changes
+* Textual changes.
 
 = 1.0.0 =
 
@@ -121,5 +121,5 @@ Yes. The hover preview functionality uses JavaScript and AJAX.
 
 == Upgrade Notice ==
 
-= 1.0.0 =
-Initial plugin release.
+= 1.0.1 =
+Textual changes.
