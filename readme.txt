@@ -1,6 +1,6 @@
 === LC HoverPeek ===
 Contributors: lionecoders, deep7197
-Tags: link preview, hover preview, link tooltip, post preview, content preview
+Tags: link preview, hover, link, post preview, preview
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.2
@@ -112,8 +112,8 @@ Yes. The hover preview functionality uses JavaScript and AJAX.
 
 == Changelog ==
 
-== 1.0.1 =
-* Texual changes
+= 1.0.1 =
+* Textual changes
 
 = 1.0.0 =
 
