@@ -39,3 +39,5 @@ tests/                  export-ignore
 *.zip                   export-ignore
 postcss.config.js       export-ignore
 .wordpress-org          export-ignore
+README.md               export-ignore
+
